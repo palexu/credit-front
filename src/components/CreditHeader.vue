@@ -13,7 +13,7 @@
                 <ul class="list-unstyled">
                   <li><a href="index.html">首页</a></li>
                   <!--<li><a href="about.html">文档</a></li>-->
-                  <li><a href="contact.html">关于</a></li>
+                  <li><a href="/mock">mock数据</a></li>
                 </ul>
               </nav> <!-- end .main-nav -->
               <a href="" class="responsive-menu-open"><i class="ion-navicon"></i></a>

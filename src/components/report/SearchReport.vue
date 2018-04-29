@@ -67,7 +67,8 @@
       }
     },
     methods: {
-      searchReport: function () {
+      searchReport: function (e) {
+        e.preventDefault();
         console.log(this.searchContent);
         axios.get('/api/report/search/TEST01').then(res => {
           console.log(res.data);
