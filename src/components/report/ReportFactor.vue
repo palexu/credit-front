@@ -8,7 +8,7 @@
         </div> <!-- end .cell-label -->
         <img src="static/images/company-logo01.jpg" alt="company-logo" class="img-responsive">
         <div class="content">
-          <h4><a href="#">{{factor.factorName}}</a></h4>
+          <h4><a href="#">{{factor.name}}</a></h4>
           <p class="small">{{factor.desc}}</p>
         </div> <!-- end .content -->
       </div> <!-- end .job-title-cell -->
@@ -52,16 +52,6 @@
     props: [
       'factor'
     ]
-    // ,
-    // data() {
-    //   return {
-    //     factorName: "tst",
-    //     desc: "描述",
-    //     type: "维度",
-    //     value: "因子值",
-    //     gmtCreated: "yyyy-MM-dd"
-    //   }
-    // }
   }
 </script>
 

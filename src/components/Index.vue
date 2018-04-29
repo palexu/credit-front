@@ -1,44 +1,26 @@
 <template>
   <!-- Header -->
   <div>
-    <credit-header/>
+    <credit-header></credit-header>
 
-    <search-report/>
+    <report></report>
 
-    <colorful-list/>
-
-    <!--<category-block/>-->
-
-    <!-- Footer -->
-    <div class="section footer transparent" style="background-image: url('static/images/background03.jpg');">
-      <div class="container">
-        <div class="top flex space-between items-center">
-          <img src="static/images/footer-logo.png" alt="footer-logo" class="img-responsive">
-          <ul class="list-unstyled footer-menu flex">
-            <li><a href="#0">Home</a></li>
-            <li><a href="#0">About</a></li>
-            <li><a href="#0">Browse Jobs</a></li>
-            <li><a href="#0">Browse candidates</a></li>
-            <li><a href="#0">Contact</a></li>
-          </ul> <!-- end .footer-menu -->
-        </div> <!-- end .top -->
-      </div> <!-- end .container -->
-    </div> <!-- end .footer -->
+    <credit-footer></credit-footer>
   </div>
 
 </template>
 <script>
+  import CreditFooter from "./CreditFooter";
   import CreditHeader from "./CreditHeader";
-  import ColorfulList from "./report/Report";
   import CategoryBlock from "./CategoryBlock";
-  import SearchReport from "./search/SearchReport";
+  import Report from "./report/Report";
 
   export default {
     components: {
-      SearchReport,
+      Report,
       CategoryBlock,
-      ColorfulList,
-      CreditHeader
+      CreditHeader,
+      CreditFooter
     },
     name: 'Index'
   }

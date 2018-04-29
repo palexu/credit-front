@@ -12,11 +12,12 @@
             <div class="form-group">
               <div class="form-group-inner">
                 <input type="text" class="form-control" id="input-field-1"
-                       placeholder="输入你的身份证号或统一社会信用代码">
+                       placeholder="输入你的身份证号或统一社会信用代码" v-model="searchContent">
                 <i class="ion-ios-briefcase-outline"></i>
               </div>
             </div>
-            <button type="submit" class="button" v-on:click="searchReport"><i class="ion-ios-search-strong"></i>
+            <button type="submit" class="button" v-on:click="searchReport"><i
+              class="ion-ios-search-strong"></i>
             </button>
           </form>
 
@@ -60,11 +61,19 @@
 
   export default {
     name: "search-report",
+    data() {
+      return {
+        searchContent: null
+      }
+    },
     methods: {
-      searchReport: function (e) {
-        e.preventDefault();
-        axios.get('http://localhost:8009/api/report/search/creditCard/DATAHUB/TEST01/creditCard').then(res => {
-          console.log(res.data)
+      searchReport: function () {
+        console.log(this.searchContent);
+        axios.get('/api/report/search/TEST01').then(res => {
+          console.log(res.data);
+          this.$emit("search:report", res.data)
+        }).catch(excption => {
+          console.log(excption)
         });
       }
     }
