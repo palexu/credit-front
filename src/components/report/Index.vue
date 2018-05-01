@@ -10,10 +10,10 @@
 
 </template>
 <script>
-  import CreditFooter from "./CreditFooter";
-  import CreditHeader from "./CreditHeader";
-  import CategoryBlock from "./CategoryBlock";
-  import Report from "./report/Report";
+  import CreditFooter from "../CreditFooter";
+  import CreditHeader from "../CreditHeader";
+  import CategoryBlock from "../CategoryBlock";
+  import Report from "./Report";
 
   export default {
     components: {

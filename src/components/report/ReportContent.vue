@@ -27,6 +27,7 @@
           <report-factor v-for="factor in factors" :factor="factor"></report-factor>
 
         </div> <!-- end .jobs-table -->
+
       </div> <!-- end .container -->
     </div> <!-- end .inner -->
   </div> <!-- end .section -->

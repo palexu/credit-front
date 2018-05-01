@@ -5,21 +5,21 @@
       <div class="container clearfix">
         <div class="header-inner flex space-between items-center">
           <div class="left">
-            <div class="logo"><a href="index.html"><p>征信开放平台</p></a></div>
+            <div class="logo"><a href="/"><p>征信开放平台</p></a></div>
           </div> <!-- end .left -->
           <div class="right flex space-between no-column items-center">
             <div class="navigation">
               <nav class="main-nav">
                 <ul class="list-unstyled">
-                  <li><a href="index.html">首页</a></li>
-                  <!--<li><a href="about.html">文档</a></li>-->
+                  <li><a href="/">首页</a></li>
+                  <li><a href="/org">机构</a></li>
                   <li><a href="/mock">mock数据</a></li>
                 </ul>
               </nav> <!-- end .main-nav -->
               <a href="" class="responsive-menu-open"><i class="ion-navicon"></i></a>
             </div> <!-- end .navigation -->
             <div class="button-group-merged flex no-column">
-              <!--<a href="#" class="button">机构登陆</a>-->
+              <!--<a href="/org" class="button">机构</a>-->
               <a href="#register" class="button" data-toggle="modal" data-target=".bs-modal-sm">登陆</a>
             </div> <!-- end .button-group-merged -->
           </div> <!-- end .right -->

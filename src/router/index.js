@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from '@/components/Index'
+import ReportIndex from '@/components/report/Index'
+import OrgIndex from '@/components/org/Index'
 import MockData from '@/components/mock/Mockdata'
 
 Vue.use(Router)
@@ -11,7 +12,12 @@ export default new Router({
     {
       path: '/',
       name: 'Index',
-      component: Index
+      component: ReportIndex
+    },
+    {
+      path: '/org',
+      name: 'Organization',
+      component: OrgIndex
     },
     {
       path: "/mock",
