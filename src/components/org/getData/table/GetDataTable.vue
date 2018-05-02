@@ -4,7 +4,7 @@
 
       <div class="section-top-content flex items-center">
         <h1>征信数据</h1>
-        <span>{{provider.desc}}</span>
+        <span>{{provider.bizType}}</span>
         <!--<a href="#0">View all jobs<i class="ion-ios-arrow-thin-right"></i></a>-->
       </div> <!-- end .section-top-content -->
 
@@ -59,13 +59,14 @@
               <div class="cell-mobile-label">
                 <h6>详情</h6>
               </div> <!-- end .cell-label -->
-              <a href="#" data-toggle="modal" data-target="#myModal">点击查看</a>
+              <button data-toggle="modal" data-target="#myModal" v-on:click="providerSelected=data.name">点击查看</button>
             </div> <!-- end .salray-cell -->
 
           </div> <!-- end .table-cells -->
         </div> <!-- end .table-row -->
 
       </div> <!-- end .jobs-table -->
+
 
       <!-- Modal -->
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -76,34 +77,32 @@
               <div class="row page-header">
                 <h1>如何获取数据</h1>
                 <!--todo code需要完善-->
-                <p>通过api调用:<code>http://localhost:8080/api/data/get?me=xxx&subject=?&...</code></p>
-                <p>数据将以<code>json</code>格式返回</p>
+                <p>发送GET请求至<code>http://localhost:8080/api/data/get/{{providerSelected}}/{subject}/{{provider.bizType}}</code></p>
+                <p>将{subject}替换为所要查询的主体，可以是身份证号、统一社会信用号，数据将以<code>json</code>格式返回</p>
               </div>
 
               <div class="panel panel-default" style="height: 400px;border-radius: 2px;border-color: #0b0b0b;">
                 <div class="panel-heading">
-                  <div class="alert alert-success" role="alert">可以进行限额100次以内的试用</div>
+                  <div class="alert alert-success" role="alert">每日可以进行限额100次以内的免费试用(剩余{{this.trailLimit}}次)</div>
                 </div>
                 <div class="panel-body">
-                  <!--<div class="row">-->
                   <div class="col-md-6">
-
-                    <p>可以在此进行试用，通过输入框来获取特定的数据,此操作不会消耗你的token</p>
+                    <p>可以在此进行试用，输入关键字并搜索。</p>
+                    <p>注：此操作不会消耗你的token</p>
                     <form class="form-inline subscribe-form flex no-column no-wrap items-center">
                       <div class="form-group">
-                        <input type="text" class="form-control" placeholder="输入需要查询的主体，如身份证或统一社会信用号">
+                        <input type="text" class="form-control" placeholder="输入需要查询的主体，如身份证或统一社会信用号" v-model="subject">
                       </div> <!-- end .form-group -->
-                      <button type="submit" class="button"><i class="ion-ios-arrow-thin-right"></i></button>
+                      <button class="button" v-on:click="getData(subject,$event)"><i
+                        class="ion-ios-arrow-thin-right"></i>
+                      </button>
                     </form>
                   </div>
                   <div class="col-md-6">
-                    <textarea rows="10" v-model="creditData"></textarea>
+                    <textarea rows="10" v-model="creditData" placeholder="征信数据"></textarea>
                   </div>
-                  <!--</div>-->
                 </div>
-
               </div>
-
 
             </div>
             <div class="modal-footer">
@@ -118,16 +117,15 @@
 </template>
 
 <script>
+  import axios from "axios";
 
   export default {
     name: "get-data-table",
     props: ["provider"],
     data() {
       return {
-        bizType: "共享单车",
-        creditData: "{\"naturePerson\":{\"idCard\":\"110000199001012001\",\"name\":\"TEST01\",\"phone\":\"15900011111\"},\"returnBikeOverdueRecord\":[{\"amount\":0,\"desc\":\"test39\",\"gmtCreated\":1525002797191},{\"amount\":0,\"desc\":\"test67\",\"gmtCreated\":1525002797191},{\"amount\":0,\"desc\":\"test17\",\"gmtCreated\":1525002797191}]}",
         // provider: {
-        //   desc: "信用卡报告-DATAHUB",
+        //   bizType: "信用卡报告-DATAHUB",
         //   providerList: [{
         //     "name": "ofo",
         //     "desc": "共享单车-小黄车",
@@ -135,7 +133,35 @@
         //     "price": "3 token",
         //     "gmtCreated": "2018-04-16"
         //   }],
-        modalData: {}
+
+        /**
+         *展示原始数据用
+         */
+        creditData: null,
+
+        /**
+         * 查数据需要
+         */
+        subject: null,
+        providerSelected: null,
+        trailLimit: 100
+      }
+    },
+    methods: {
+      getData: function (idcard, event) {
+        event.preventDefault();
+        if (this.providerSelected != null && this.provider.bizType != null && this.trailLimit > 0) {
+          this.trailLimit--;
+          axios.get('/api/creditData/trial/get/' + this.providerSelected + '/' + idcard + '/' + this.provider.bizType).then(res => {
+            console.log(res.data);
+            this.creditData = JSON.stringify(res.data, null, 4);
+          }).catch(excption => {
+            console.log(excption)
+          });
+        } else {
+          alert("今日免费查询次数已用完");
+          console.log(this.providerSelected, this.provider.bizType)
+        }
       }
     }
   }

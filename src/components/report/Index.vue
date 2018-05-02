@@ -12,7 +12,7 @@
 <script>
   import CreditFooter from "../CreditFooter";
   import CreditHeader from "../CreditHeader";
-  import CategoryBlock from "../CategoryBlock";
+  import CategoryBlock from "../org/getData/CategoryBlock";
   import Report from "./Report";
 
   export default {

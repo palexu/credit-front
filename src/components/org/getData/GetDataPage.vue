@@ -14,7 +14,7 @@
 
 <script>
   import GetDataTable from "./table/GetDataTable";
-  import CategoryBlock from "../../CategoryBlock";
+  import CategoryBlock from "./CategoryBlock";
 
   export default {
     name: "get-data-page",
