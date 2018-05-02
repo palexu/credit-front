@@ -6,7 +6,7 @@
         <h1 class="light">获取不同场景的征信数据</h1>
         <div class="category-grid">
           <div class="category-row flex no-wrap space-between items-center">
-            <div class="item">
+            <div class="item" v-on:click="getProviderList('creditCard')">
               <img src="static/images/category-icon01.png" alt="category-icon" class="img-responsive">
               <h4>银行</h4>
               <p class="light">4286 Jobs</p>
@@ -16,7 +16,7 @@
               <h4>生活</h4>
               <p class="light">452 Jobs</p>
             </div> <!-- end .item -->
-            <div class="item">
+            <div class="item" v-on:click="getProviderList('sharedBike')">
               <img src="static/images/category-icon03.png" alt="category-icon" class="img-responsive">
               <h4>出行</h4>
               <p class="light">1867 Jobs</p>
@@ -50,14 +50,14 @@
               <p class="light">2619 Jobs</p>
             </div> <!-- end .item -->
             <!--<div class="item">-->
-              <!--<img src="static/images/category-icon09.png" alt="category-icon" class="img-responsive">-->
-              <!--<h4>Education/Training</h4>-->
-              <!--<p class="light">1132 jobs</p>-->
+            <!--<img src="static/images/category-icon09.png" alt="category-icon" class="img-responsive">-->
+            <!--<h4>Education/Training</h4>-->
+            <!--<p class="light">1132 jobs</p>-->
             <!--</div> &lt;!&ndash; end .item &ndash;&gt;-->
             <!--<div class="item">-->
-              <!--<img src="static/images/category-icon10.png" alt="category-icon" class="img-responsive">-->
-              <!--<h4>Food Services</h4>-->
-              <!--<p class="light">757 jobs</p>-->
+            <!--<img src="static/images/category-icon10.png" alt="category-icon" class="img-responsive">-->
+            <!--<h4>Food Services</h4>-->
+            <!--<p class="light">757 jobs</p>-->
             <!--</div> &lt;!&ndash; end .item &ndash;&gt;-->
           </div> <!-- end .category-row -->
         </div>  <!-- end .category-grid -->
@@ -70,9 +70,24 @@
 </template>
 
 <script>
-    export default {
-        name: "category-block"
+  import axios from "axios";
+
+  export default {
+    name: "category-block",
+    methods: {
+      getProviderList: function (bizType) {
+        // e.preventDefault();
+        console.log(bizType);
+        axios.get('/api/provider/list/' + bizType).then(res => {
+          console.log(res.data);
+          this.$emit("provider:list", res.data)
+        }).catch(excption => {
+          console.log(excption)
+        });
+
+      }
     }
+  }
 </script>
 
 <style scoped>

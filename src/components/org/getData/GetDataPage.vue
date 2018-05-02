@@ -1,9 +1,13 @@
 <template>
   <div id="getData" class="tab-pane company-tab-content text-center fade in active">
 
-    <category-block></category-block>
+    <category-block
+      v-on:provider:list="result = $event"
+    ></category-block>
 
-    <get-data-table></get-data-table>
+    <get-data-table
+      :provider="result"
+    ></get-data-table>
 
   </div> <!-- end .company-tab-content -->
 </template>
@@ -17,6 +21,11 @@
     components: {
       CategoryBlock,
       GetDataTable
+    },
+    data() {
+      return {
+        result: null
+      }
     }
   }
 </script>

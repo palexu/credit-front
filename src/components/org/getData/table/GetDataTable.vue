@@ -4,7 +4,7 @@
 
       <div class="section-top-content flex items-center">
         <h1>征信数据</h1>
-        <span>{{bizType}}</span>
+        <span>{{provider.desc}}</span>
         <!--<a href="#0">View all jobs<i class="ion-ios-arrow-thin-right"></i></a>-->
       </div> <!-- end .section-top-content -->
 
@@ -97,7 +97,7 @@
                     </form>
                   </div>
                   <div class="col-md-6">
-                    <textarea rows="10"></textarea>
+                    <textarea rows="10" v-model="creditData"></textarea>
                   </div>
                   <!--</div>-->
                 </div>
@@ -121,22 +121,20 @@
 
   export default {
     name: "get-data-table",
+    props: ["provider"],
     data() {
       return {
         bizType: "共享单车",
-        provider: {
-          desc: "信用卡报告-DATAHUB",
-          providerList: {
-            "信用卡逾期总次数": {
-              "name": "ofo",
-              "desc": "共享单车-小黄车",
-              "count": 10000,
-              "price": "3 token",
-              "type": "未生成",
-              "gmtCreated": "2018-04-16"
-            }
-          }
-        },
+        creditData: "{\"naturePerson\":{\"idCard\":\"110000199001012001\",\"name\":\"TEST01\",\"phone\":\"15900011111\"},\"returnBikeOverdueRecord\":[{\"amount\":0,\"desc\":\"test39\",\"gmtCreated\":1525002797191},{\"amount\":0,\"desc\":\"test67\",\"gmtCreated\":1525002797191},{\"amount\":0,\"desc\":\"test17\",\"gmtCreated\":1525002797191}]}",
+        // provider: {
+        //   desc: "信用卡报告-DATAHUB",
+        //   providerList: [{
+        //     "name": "ofo",
+        //     "desc": "共享单车-小黄车",
+        //     "count": 10000,
+        //     "price": "3 token",
+        //     "gmtCreated": "2018-04-16"
+        //   }],
         modalData: {}
       }
     }
@@ -144,11 +142,11 @@
 </script>
 
 <style scoped>
-  .modal-body {
-    height: 500px;
-  }
+  /*.modal-body {*/
+  /*height: 500px;*/
+  /*}*/
 
-  .modal-dialog {
-    height: 550px;
-  }
+  /*.modal-dialog {*/
+  /*height: 550px;*/
+  /*}*/
 </style>
