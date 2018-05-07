@@ -34,7 +34,7 @@
 </template>
 
 <script>
-  import CreditHeader from "../CreditHeader";
+  import CreditHeader from "./CreditHeader";
 
   export default {
     components: {CreditHeader},
