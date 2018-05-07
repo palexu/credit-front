@@ -922,13 +922,19 @@ select::-ms-expand {
 .section.solid-blue-bg>.inner {
 	background: #1650e3;
 }
+.section.solid-green-bg>.inner {
+  background: #669933;
+}
+.section.solid-pale-bg>.inner {
+  background: #f0f3fa;
+}
 .section.solid-grey-bg>.inner {
 	background: #f4f4f4;
 }
 .section.solid-light-grey-bg>.inner {
 	background: #f0f3fa;
 }
-.section.transparent>.inner h1, .section.solid-blue-color>.inner h1 {
+.section.transparent>.inner h1, .section.solid-blue-color>.inner h1,.section.solid-green-color>.inner h1 {
 	color: #fff;
 	position: relative;
 	z-index: 1;

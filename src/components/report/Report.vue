@@ -7,8 +7,7 @@
 
     <ReportContent
       v-for="report in result.reports"
-      :report-name="report.reportName"
-      :factors="report.factors"
+      :report="report"
     ></ReportContent>
 
   </div>
