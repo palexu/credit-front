@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import ReportIndex from '@/components/report/Index'
 import OrgIndex from '@/components/org/Index'
-import MockData from '@/components/Mockdata'
+import MockData from '@/components/MockData'
 
 Vue.use(Router)
 
