@@ -20,7 +20,23 @@
             </div> <!-- end .navigation -->
             <div class="button-group-merged flex no-column">
               <!--<a href="/org" class="button">机构</a>-->
-              <a href="#register" class="button" data-toggle="modal" data-target=".bs-modal-sm">登陆</a>
+
+              <div class="btn-group">
+                <a v-bind:class="{fade:isLogin}" href="#register" class="button" data-toggle="modal"
+                   data-target=".bs-modal-sm">登陆</a>
+                <button v-bind:class="{fade:!isLogin}" type="button" class="btn btn-default dropdown-toggle button"
+                        data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                  {{getUser().username}} <span class="caret"></span>
+                </button>
+                <ul v-bind:class="{fade:!isLogin}" class="dropdown-menu">
+                  <li><a href="#"></a></li>
+                  <li><a href="#">查看资料</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a v-on:click="logout">退出登录</a></li>
+                </ul>
+              </div>
+
             </div> <!-- end .button-group-merged -->
           </div> <!-- end .right -->
         </div> <!-- end .header-inner -->
@@ -35,7 +51,7 @@
 
     <!--个人 登陆注册表单-->
     <!-- Login/Signup Popup -->
-    <div class="modal fade bs-modal-sm" aria-hidden="true" aria-labelledby="myTabContent" id="login-signup-popup"
+    <div class="modal bs-modal-sm" aria-hidden="true" aria-labelledby="myTabContent" id="login-signup-popup"
          role="dialog" tabindex="-1">
       <div class="modal-dialog modal-sm login-signup-modal">
         <div class="modal-content">
@@ -47,27 +63,15 @@
           </div> <!-- end .popup-tabs -->
           <div class="modal-body">
             <div class="tab-content" id="myTabContent">
-              <div class="tab-pane fade" id="login">
-                <form class="login-form" method="post" action="/api/user/login">
 
-                  <div class="form-group">
-                    <label for="InputEmail1">账号 *</label>
-                    <input type="text" name="username" class="form-control" id="InputEmail1" placeholder="身份证 或 统一社会信用代码">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="InputPassword1">密码 *</label>
-                    <input type="password" name="password" class="form-control" id="InputPassword1" placeholder="输入你的密码">
-                  </div>
-
-                  <button type="submit" class="button" >登陆</button>
-
-                </form> <!-- end .login-form -->
+              <div class="tab-pane fade active in" id="login">
+                <login-form v-on:user:login="checkLogin"></login-form>
               </div> <!-- end login-tab-content -->
 
-              <div class="tab-pane fade active in" id="register">
+              <div class="tab-pane fade " id="register">
                 <register></register>
               </div> <!-- end signup-tab-content -->
+
             </div> <!-- end .mytabcontent -->
           </div> <!-- end .modal-body -->
         </div> <!-- end .modal-content -->
@@ -78,11 +82,60 @@
 </template>
 
 <script>
+  import axios from "axios";
   import Register from "./Register";
+  import LoginForm from "./LoginForm";
 
   export default {
-    components: {Register},
-    name: "credit-header"
+    components: {
+      LoginForm,
+      Register
+    },
+    name: "credit-header",
+    data() {
+      return {
+        userString: "",
+        isLogin: false,
+        isShowModal: false
+      }
+    },
+    mounted: function () {
+      this.checkLogin();
+    },
+    methods: {
+      closeModal: function () {
+        this.isShowModal = false;
+      },
+      openModal: function () {
+        this.isShowModal = true;
+      },
+      checkLogin: function () {
+        var ss = window.sessionStorage;
+        var user = ss.getItem("user");
+        if (null == user) {
+          this.isLogin = false;
+        } else {
+          this.isLogin = true;
+        }
+      },
+      logout: function () {
+        window.sessionStorage.removeItem("user");
+        this.isLogin = false;
+        axios.get("/api/user/logout").then(response => {
+          var res = response.data;
+          alert(res)
+        })
+      },
+      getUser: function () {
+        var ss = window.sessionStorage;
+        var user = ss.getItem("user");
+        if (user == null) {
+          return {}
+        }
+        return JSON.parse(user);
+      }
+    },
+    computed: {}
   }
 </script>
 
