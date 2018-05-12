@@ -31,7 +31,7 @@
 <script>
   import GetDataPage from "./getData/GetDataPage";
   import ShareDataPage from "./getData/ShareDataPage";
-  import FactorScriptPage from "./getData/FactorScriptPage";
+  import FactorScriptPage from "./script/FactorScriptPage";
 
   export default {
     components: {

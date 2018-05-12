@@ -45,7 +45,7 @@
               <div class="cell-mobile-label">
                 <h6>每千条token</h6>
               </div> <!-- end .cell-label -->
-              <p>{{data.price}}</p>
+              <p class="text-center">{{data.price}}</p>
             </div> <!-- end .location-cell -->
 
             <div class="cell expired-date-cell flex no-column no-wrap">

@@ -36,11 +36,11 @@
                     <p>{{new Date(history.gmtCreated).toLocaleDateString()}}</p>
                     <p>{{new Date(history.gmtCreated).toLocaleTimeString()}}</p>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-10">
                     <p class="lead">{{history.provider}} </p>
                     <p v-for="opPair in history.opPairList">{{opPair.opType}} <code>{{opPair.opContent}}</code></p>
                     <br/>
-                    指纹:{{history.print}}
+                    指纹:{{history.print}} <a href="#">(点击查看区块链交易记录)</a>
                   </div>
                 </div>
               </div>

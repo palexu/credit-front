@@ -21,7 +21,8 @@
               <div class="table-cells flex">
                 <div class="job-title-cell"><h6>指标</h6></div>
                 <div class="job-type-cell"><h6>类型</h6></div>
-                <div class="location-cell"><h6>状态</h6></div>
+                <div class="job-type-cell"><h6>来源</h6></div>
+                <div class="location-cell"><h6>因子数值</h6></div>
                 <div class="expired-date-cell"><h6>更新时间</h6></div>
                 <!--<div class="salary-cell"><h6>查看详情</h6></div>-->
               </div> <!-- end .table-cells -->
@@ -36,7 +37,7 @@
                   </div> <!-- end .cell-label -->
                   <img src="static/images/company-logo01.jpg" alt="company-logo" class="img-responsive">
                   <div class="content">
-                    <h4><a href="#">{{factor.name}}</a></h4>
+                    <h4>{{factor.name}}</h4>
                     <p class="small">{{factor.desc}}</p>
                   </div> <!-- end .content -->
                 </div> <!-- end .job-title-cell -->
@@ -45,7 +46,14 @@
                   <div class="cell-mobile-label">
                     <h6>描述</h6>
                   </div> <!-- end .cell-label -->
-                  <button type="button" class="button full-time">{{factor.type}}</button>
+                  <button type="button" class="button full-time">{{factor.type==null?"暂无":factor.type}}</button>
+                </div> <!-- end .job-type-cell -->
+
+                <div class="cell job-type-cell flex no-column">
+                  <div class="cell-mobile-label">
+                    <h6>来源</h6>
+                  </div> <!-- end .cell-label -->
+                  <p>{{factor.provider}}</p>
                 </div> <!-- end .job-type-cell -->
 
                 <div class="cell location-cell flex no-column no-wrap">
@@ -63,11 +71,11 @@
                 </div> <!-- end .expire-date-cell -->
 
                 <!--<div class="cell salary-cell flex no-column no-wrap">-->
-                  <!--<div class="cell-mobile-label">-->
-                    <!--<h6>详情</h6>-->
-                  <!--</div> &lt;!&ndash; end .cell-label &ndash;&gt;-->
-                  <!--&lt;!&ndash;<p><sup>$</sup>60<span>/hour</span></p>&ndash;&gt;-->
-                  <!--<a href="#">点击查看</a>-->
+                <!--<div class="cell-mobile-label">-->
+                <!--<h6>详情</h6>-->
+                <!--</div> &lt;!&ndash; end .cell-label &ndash;&gt;-->
+                <!--&lt;!&ndash;<p><sup>$</sup>60<span>/hour</span></p>&ndash;&gt;-->
+                <!--<a href="#">点击查看</a>-->
                 <!--</div> &lt;!&ndash; end .salray-cell &ndash;&gt;-->
 
               </div> <!-- end .table-cells -->
@@ -88,7 +96,7 @@
 </template>
 
 <script>
-  import BlockHistory from "../org/BlockHistory";
+  import BlockHistory from "../BlockHistory";
 
   export default {
     components: {BlockHistory},
