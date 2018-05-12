@@ -3,13 +3,14 @@
   <div class="section footer transparent" style="background-image: url('static/images/background03.jpg');">
     <div class="container">
       <div class="top flex space-between items-center">
-        <img src="static/images/footer-logo.png" alt="footer-logo" class="img-responsive">
+        <!--<img src="static/images/footer-logo.png" alt="footer-logo" class="img-responsive">-->
+        <div class="logo"><a href="/"><p>征信开放平台</p></a></div>
         <ul class="list-unstyled footer-menu flex">
-          <li><a href="#0">Home</a></li>
-          <li><a href="#0">About</a></li>
-          <li><a href="#0">Browse Jobs</a></li>
-          <li><a href="#0">Browse candidates</a></li>
-          <li><a href="#0">Contact</a></li>
+          <li><a href="/">首页</a></li>
+          <li><a href="/about">关于</a></li>
+          <li><a href="/org">机构</a></li>
+          <li><a href="/doc">文档</a></li>
+          <li><a href="/contact">联系我们</a></li>
         </ul> <!-- end .footer-menu -->
       </div> <!-- end .top -->
     </div> <!-- end .container -->

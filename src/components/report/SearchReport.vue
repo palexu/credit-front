@@ -28,21 +28,21 @@
         <div class="container">
           <div class="features-bar-inner flex space-between">
             <div class="features-box self-center">
-              <h3>Leading the industry</h3>
-              <a href="about.html">About us<i class="ion-ios-arrow-thin-right"></i></a>
+              <h3>基于区块链的征信平台</h3>
+              <a href="/doc">了解区块链技术<i class="ion-ios-arrow-thin-right"></i></a>
             </div> <!-- end .feature-box -->
             <div class="features-box-icon flex no-wrap">
               <img src="static/images/feature-icon01.png" alt="cup-icon" class="img-responsive self-center">
               <div class="content self-center">
-                <h3>High average salary</h3>
-                <a href="#0">Learn more<i class="ion-ios-arrow-thin-right"></i></a>
+                <h3>多重加密保障安全</h3>
+                <a href="/doc">了解更多<i class="ion-ios-arrow-thin-right"></i></a>
               </div> <!-- end .content -->
             </div> <!-- end .feature-box-icon -->
             <div class="features-box-icon flex no-wrap">
               <img src="static/images/feature-icon02.png" alt="cup-icon" class="img-responsive self-center">
               <div class="content self-center">
-                <h3>2,500,000+ candidates</h3>
-                <a href="#0">Our community<i class="ion-ios-arrow-thin-right"></i></a>
+                <h3>2,500,000+ 征信数据</h3>
+                <a href="/contact">加入我们<i class="ion-ios-arrow-thin-right"></i></a>
               </div> <!-- end .content -->
             </div> <!-- end .feature-box-icon -->
             <div class="user-profile-icon self-center">

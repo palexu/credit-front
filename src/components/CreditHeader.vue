@@ -41,60 +41,32 @@
         <div class="modal-content">
           <div class="popup-tabs">
             <ul class="nav nav-tabs" id="myTab">
-              <li class=""><a data-toggle="tab" href="#login">登陆</a></li>
-              <li class="active"><a data-toggle="tab" href="#register">注册</a></li>
+              <li class="active"><a data-toggle="tab" href="#login">登陆</a></li>
+              <li class=""><a data-toggle="tab" href="#register">注册</a></li>
             </ul>
           </div> <!-- end .popup-tabs -->
           <div class="modal-body">
             <div class="tab-content" id="myTabContent">
               <div class="tab-pane fade" id="login">
-                <form class="login-form">
+                <form class="login-form" method="post" action="/api/user/login">
 
                   <div class="form-group">
                     <label for="InputEmail1">账号 *</label>
-                    <input type="email" class="form-control" id="InputEmail1" placeholder="身份证 或 统一社会信用代码">
+                    <input type="text" name="username" class="form-control" id="InputEmail1" placeholder="身份证 或 统一社会信用代码">
                   </div>
 
                   <div class="form-group">
                     <label for="InputPassword1">密码 *</label>
-                    <input type="password" class="form-control" id="InputPassword1" placeholder="输入你的密码">
+                    <input type="password" name="password" class="form-control" id="InputPassword1" placeholder="输入你的密码">
                   </div>
 
-                  <button type="button" class="button" data-dismiss="modal">登陆</button>
+                  <button type="submit" class="button" >登陆</button>
 
                 </form> <!-- end .login-form -->
               </div> <!-- end login-tab-content -->
 
               <div class="tab-pane fade active in" id="register">
-                <form class="signup-form">
-                  <div class="form-group">
-                    <label for="InputEmail1">账号 *</label>
-                    <input type="email" class="form-control" id="InputEmail2" placeholder="输入身份证或统一社会信用代码">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="InputPassword1">密码 *</label>
-                    <input type="password" class="form-control" id="InputPassword2" placeholder="输入密码">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="InputPassword2">确认密码 *</label>
-                    <input type="password" class="form-control" id="InputPassword3" placeholder="再次输入密码">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="select1">身份:</label>
-                    <div class="select-wrapper">
-                      <select class="form-control" id="select1">
-                        <option>个人</option>
-                        <option>机构</option>
-                      </select>
-                    </div> <!-- end .select-wrapper -->
-                  </div>
-
-                  <button type="button" class="button" data-dismiss="modal">注册</button>
-
-                </form> <!-- end .signup-form -->
+                <register></register>
               </div> <!-- end signup-tab-content -->
             </div> <!-- end .mytabcontent -->
           </div> <!-- end .modal-body -->
@@ -106,7 +78,10 @@
 </template>
 
 <script>
+  import Register from "./Register";
+
   export default {
+    components: {Register},
     name: "credit-header"
   }
 </script>
