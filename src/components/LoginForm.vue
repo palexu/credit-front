@@ -19,7 +19,7 @@
     {{form}}
     <p v-if="tip.length>0" class="alert alert-danger">{{tip}}</p>
 
-    <button v-on:click="login" class="button" data-dismiss="modal">登陆</button>
+    <button v-on:click="login" class="button">登陆</button>
 
   </form> <!-- end .login-form -->
 </template>

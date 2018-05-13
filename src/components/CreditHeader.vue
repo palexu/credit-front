@@ -21,15 +21,15 @@
             <div class="button-group-merged flex no-column">
               <!--<a href="/org" class="button">机构</a>-->
 
-              <div class="btn-group">
-                <a v-bind:class="{fade:isLogin}" href="#register" class="button" data-toggle="modal"
-                   data-target=".bs-modal-sm">登陆</a>
-                <button v-bind:class="{fade:!isLogin}" type="button" class="btn btn-default dropdown-toggle button"
+              <a v-if="!isLogin" href="#register" class="button" data-toggle="modal"
+                 data-target=".bs-modal-sm">登陆</a>
+              <div v-if="isLogin" class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle"
                         data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                   {{getUser().username}} <span class="caret"></span>
                 </button>
-                <ul v-bind:class="{fade:!isLogin}" class="dropdown-menu">
+                <ul class="dropdown-menu">
                   <li><a href="#"></a></li>
                   <li><a href="#">查看资料</a></li>
                   <li role="separator" class="divider"></li>
@@ -51,7 +51,8 @@
 
     <!--个人 登陆注册表单-->
     <!-- Login/Signup Popup -->
-    <div class="modal bs-modal-sm" aria-hidden="true" aria-labelledby="myTabContent" id="login-signup-popup"
+    <div v-show="isShowModal" class="modal bs-modal-sm" aria-hidden="true" aria-labelledby="myTabContent"
+         id="login-signup-popup"
          role="dialog" tabindex="-1">
       <div class="modal-dialog modal-sm login-signup-modal">
         <div class="modal-content">
@@ -65,7 +66,7 @@
             <div class="tab-content" id="myTabContent">
 
               <div class="tab-pane fade active in" id="login">
-                <login-form v-on:user:login="checkLogin"></login-form>
+                <login-form v-on:user:login="finishLogin"></login-form>
               </div> <!-- end login-tab-content -->
 
               <div class="tab-pane fade " id="register">
@@ -103,11 +104,9 @@
       this.checkLogin();
     },
     methods: {
-      closeModal: function () {
-        this.isShowModal = false;
-      },
-      openModal: function () {
-        this.isShowModal = true;
+      finishLogin: function () {
+        this.checkLogin();
+        location.reload();
       },
       checkLogin: function () {
         var ss = window.sessionStorage;
@@ -123,7 +122,6 @@
         this.isLogin = false;
         axios.get("/api/user/logout").then(response => {
           var res = response.data;
-          alert(res)
         })
       },
       getUser: function () {
