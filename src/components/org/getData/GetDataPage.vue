@@ -6,7 +6,7 @@
     ></category-block>
 
     <get-data-table
-      :provider="result"
+      :p_provider="result"
     ></get-data-table>
 
   </div> <!-- end .company-tab-content -->

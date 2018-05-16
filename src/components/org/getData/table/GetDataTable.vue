@@ -77,7 +77,9 @@
               <div class="row page-header">
                 <h1>如何获取数据</h1>
                 <!--todo code需要完善-->
-                <p>发送GET请求至<code>http://localhost:8080/api/data/get/{{providerSelected}}/{subject}/{{provider.bizType}}</code></p>
+                <p>
+                  发送GET请求至<code>http://localhost:8080/api/data/get/{{providerSelected}}/{subject}/{{provider.bizType}}</code>
+                </p>
                 <p>将{subject}替换为所要查询的主体，可以是身份证号、统一社会信用号，数据将以<code>json</code>格式返回</p>
               </div>
 
@@ -121,23 +123,14 @@
 
   export default {
     name: "get-data-table",
-    props: ["provider"],
+    props: ["p_provider"],
     data() {
       return {
-        // provider: {
-        //   bizType: "信用卡报告-DATAHUB",
-        //   providerList: [{
-        //     "name": "ofo",
-        //     "desc": "共享单车-小黄车",
-        //     "count": 10000,
-        //     "price": "3 token",
-        //     "gmtCreated": "2018-04-16"
-        //   }],
-
         /**
          *展示原始数据用
          */
         creditData: null,
+        provider: {},
 
         /**
          * 查数据需要
@@ -160,8 +153,13 @@
           });
         } else {
           alert("今日免费查询次数已用完");
-          console.log(this.providerSelected, this.provider.bizType)
+          // console.log(this.providerSelected, this.provider.bizType)
         }
+      }
+    },
+    watch: {
+      p_provider: function () {
+        this.provider = this.p_provider;
       }
     }
   }
