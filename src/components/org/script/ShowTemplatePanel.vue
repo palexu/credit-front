@@ -20,7 +20,7 @@
           <tr v-for="template in templateList.templateDos">
             <th scope="row">{{template.id}}</th>
             <td>{{template.name}}</td>
-            <td>{{template.bizType}}</td>
+            <td>{{template.bizTypes}}</td>
             <td>{{template.gmtCreated}}</td>
             <td>{{template.gmtUpdated}}</td>
             <td>
@@ -64,7 +64,7 @@
                 <label class="col-sm-2 control-label">所属业务类型</label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control" placeholder="所属业务类型"
-                         v-model="templateFormCopy.bizType">
+                         v-model="templateFormCopy.bizTypes">
                 </div>
               </div>
 
@@ -152,7 +152,7 @@
                 <label class="col-sm-2 control-label">所属业务类型</label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control" placeholder="所属业务类型"
-                         v-model="templateFormCopy.bizType">
+                         v-model="templateFormCopy.bizTypes">
                 </div>
               </div>
 
@@ -196,7 +196,7 @@
                 </div>
               </div>
 
-              <input type="hidden" class="form-control" placeholder="所属业务类型" v-model="factorFormCopy.bizType">
+              <input type="hidden" class="form-control" placeholder="所属业务类型" v-model="factorFormCopy.bizTypes">
 
               <div class="form-group">
                 <label class="col-sm-2 control-label">因子计算内容</label>

@@ -86,6 +86,7 @@
         </div> <!-- end .container -->
       </div> <!-- end .inner -->
     </div> <!-- end .section -->
+    {{report.bizType}}
     <block-history
       id="block-history"
       v-if="isShowRawData"

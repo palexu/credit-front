@@ -4,7 +4,7 @@
 
       <div class="section-top-content flex items-center">
         <h1>征信数据</h1>
-        <span>{{provider.bizType}}</span>
+        <span>{{provider.bizTypes}}</span>
         <!--<a href="#0">View all jobs<i class="ion-ios-arrow-thin-right"></i></a>-->
       </div> <!-- end .section-top-content -->
 
@@ -78,7 +78,7 @@
                 <h1>如何获取数据</h1>
                 <!--todo code需要完善-->
                 <p>
-                  发送GET请求至<code>http://localhost:8080/api/data/get/{{providerSelected}}/{subject}/{{provider.bizType}}</code>
+                  发送GET请求至<code>http://localhost:8080/api/data/get/{{providerSelected}}/{subject}/{{provider.bizTypes}}</code>
                 </p>
                 <p>将{subject}替换为所要查询的主体，可以是身份证号、统一社会信用号，数据将以<code>json</code>格式返回</p>
               </div>
@@ -143,9 +143,9 @@
     methods: {
       getData: function (idcard, event) {
         event.preventDefault();
-        if (this.providerSelected != null && this.provider.bizType != null && this.trailLimit > 0) {
+        if (this.providerSelected != null && this.provider.bizTypes != null && this.trailLimit > 0) {
           this.trailLimit--;
-          axios.get('/api/creditData/trial/get/' + this.providerSelected + '/' + idcard + '/' + this.provider.bizType).then(res => {
+          axios.get('/api/creditData/trial/get/' + this.providerSelected + '/' + idcard + '/' + this.provider.bizTypes).then(res => {
             console.log(res.data);
             this.creditData = JSON.stringify(res.data, null, 4);
           }).catch(excption => {
@@ -153,7 +153,7 @@
           });
         } else {
           alert("今日免费查询次数已用完");
-          // console.log(this.providerSelected, this.provider.bizType)
+          // console.log(this.providerSelected, this.provider.bizTypes)
         }
       }
     },
