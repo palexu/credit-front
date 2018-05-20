@@ -15,15 +15,15 @@
       <factor-script-page></factor-script-page>
     </div> <!-- end .team-tab-content -->
 
-    <div id="faq" class="tab-pane faq-tab-content fade">
-      <h3>Menu 2</h3>
-      <p>Some content in menu 2.</p>
-    </div>
+    <!--<div id="faq" class="tab-pane faq-tab-content fade">-->
+      <!--<h3>Menu 2</h3>-->
+      <!--<p>Some content in menu 2.</p>-->
+    <!--</div>-->
 
-    <div id="contact-us" class="tab-pane contact-us-tab-content fade">
-      <h3>Menu 2</h3>
-      <p>Some content in menu 2.</p>
-    </div>
+    <!--<div id="contact-us" class="tab-pane contact-us-tab-content fade">-->
+      <!--<h3>Menu 2</h3>-->
+      <!--<p>Some content in menu 2.</p>-->
+    <!--</div>-->
 
   </div>
 </template>

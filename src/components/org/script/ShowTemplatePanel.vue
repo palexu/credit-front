@@ -284,8 +284,17 @@
       },
       //========================================================================================
       fillFactorForm: function (tid, fid) {
-        var factors = this.templateList.templateDos[tid].factorSelected;
+        console.log(fid);
+        console.log(this.templateList);
         console.log(factors);
+        let factors = null;
+        for (let temid in this.templateList.templateDos) {
+          console.log(temid);
+          if (this.templateList.templateDos[temid].id === tid) {
+            factors = this.templateList.templateDos[temid].factorSelected;
+            break;
+          }
+        }
         for (var key in factors) {
           var factor = factors[key];
           if (factor.id == fid) {
@@ -348,8 +357,8 @@
         this.templateFormCopy = {};
       },
       saveTemplate: function () {
+        var user = JSON.parse(window.sessionStorage.getItem("user"));
         if (this.templateFormCopy.id == null) {
-          var user = JSON.parse(window.sessionStorage.getItem("user"));
           axios.post("/api/report/manage/template/insert?provider=" + user.username, this.templateFormCopy).then(response => {
             if (response.data) {
               this.getTemplateList();
@@ -359,7 +368,7 @@
             }
           })
         } else {
-          axios.post("/api/report/manage/template/update", this.templateFormCopy).then(response => {
+          axios.post("/api/report/manage/template/update?pname=" + user.username, this.templateFormCopy).then(response => {
             if (response.data) {
               this.getTemplateList();
               alert("success")
