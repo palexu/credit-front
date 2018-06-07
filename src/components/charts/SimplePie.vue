@@ -51,7 +51,7 @@
           legendData.push(pieData[i].name);
         }
 
-        let seOp = new Date().getTime() % 2;
+        let seOp = 1;//new Date().getTime() % 2;
         if (seOp == 0) {
           myChart.setOption(this.getOption1(legendData, pieData));
         } else {

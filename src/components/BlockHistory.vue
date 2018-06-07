@@ -139,6 +139,8 @@
       creditData: function () {
         if (this.currentShowBizType == null)
           return null;
+        console.log("hellll;");
+        console.log(this.rst);
         return this.rst[this.currentShowBizType].creditData;
       }
     },
@@ -150,7 +152,7 @@
     },
     methods: {
       getDataWithHistory: function () {
-        var path = null;
+        let path = null;
         if (this.provider == null) {
           path = '/api/creditData/getWithHistory/' + this.subject + '/' + this.bizType;
         } else {
@@ -164,9 +166,9 @@
             alert(res.data.msg);
             return
           }
-          this.rst = res.data;
+          this.rst = res.data.data;
 
-          for (var key in this.rst) {
+          for (let key in this.rst) {
             this.currentShowBizType = key;
             break;
           }
