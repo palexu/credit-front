@@ -3,8 +3,9 @@ import Router from 'vue-router'
 import ReportIndex from '@/components/report/Index'
 import OrgIndex from '@/components/org/Index'
 import MockData from '@/components/MockData'
+import DemoOne from '@/components/charts/DemoOne'
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   mode: 'history',
@@ -23,6 +24,11 @@ export default new Router({
       path: "/mock",
       name: "Mock",
       component: MockData
+    },
+    {
+      path: "/demo",
+      name: "Demo",
+      component: DemoOne
     }
   ]
 })

@@ -147,13 +147,17 @@
           this.trailLimit--;
           axios.get('/api/creditData/trial/get/' + this.providerSelected + '/' + idcard + '/' + this.provider.bizTypes).then(res => {
             console.log(res.data);
-            this.creditData = JSON.stringify(res.data, null, 4);
+            if(!res.data.success){
+              alert(res.data.msg);
+              return
+            }
+            this.creditData = JSON.stringify(res.data.data, null, 4);
           }).catch(excption => {
             console.log(excption)
           });
         } else {
           alert("今日免费查询次数已用完");
-          // console.log(this.providerSelected, this.provider.bizTypes)
+          console.log(this.providerSelected, this.provider.bizTypes)
         }
       }
     },

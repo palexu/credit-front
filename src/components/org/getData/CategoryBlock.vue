@@ -80,7 +80,12 @@
         console.log(bizType);
         axios.get('/api/provider/list/' + bizType).then(res => {
           console.log(res.data);
-          this.$emit("provider:list", res.data)
+          if(res.data.success){
+            this.$emit("provider:list", res.data.data)
+          }else{
+            alert(res.data.msg)
+          }
+
         }).catch(excption => {
           console.log(excption)
         });

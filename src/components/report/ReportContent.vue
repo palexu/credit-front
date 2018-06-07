@@ -24,69 +24,28 @@
                 <div class="job-type-cell"><h6>来源</h6></div>
                 <div class="location-cell"><h6>因子数值</h6></div>
                 <div class="expired-date-cell"><h6>更新时间</h6></div>
-                <!--<div class="salary-cell"><h6>查看详情</h6></div>-->
               </div> <!-- end .table-cells -->
             </div> <!-- end .table-header -->
 
-            <div class="table-row" v-for="factor in report.factors">
-              <div class="table-cells flex no-wrap">
-
-                <div class="cell job-title-cell flex no-column no-wrap">
-                  <div class="cell-mobile-label">
-                    <h6>因子名</h6>
-                  </div> <!-- end .cell-label -->
-                  <img src="static/images/company-logo01.jpg" alt="company-logo" class="img-responsive">
-                  <div class="content">
-                    <h4>{{factor.name}}</h4>
-                    <p class="small">{{factor.desc}}</p>
-                  </div> <!-- end .content -->
-                </div> <!-- end .job-title-cell -->
-
-                <div class="cell job-type-cell flex no-column">
-                  <div class="cell-mobile-label">
-                    <h6>描述</h6>
-                  </div> <!-- end .cell-label -->
-                  <button type="button" class="button full-time">{{factor.type==null?"暂无":factor.type}}</button>
-                </div> <!-- end .job-type-cell -->
-
-                <div class="cell job-type-cell flex no-column">
-                  <div class="cell-mobile-label">
-                    <h6>来源</h6>
-                  </div> <!-- end .cell-label -->
-                  <p>{{factor.provider}}</p>
-                </div> <!-- end .job-type-cell -->
-
-                <div class="cell location-cell flex no-column no-wrap">
-                  <div class="cell-mobile-label">
-                    <h6>状态</h6>
-                  </div> <!-- end .cell-label -->
-                  <p>{{factor.value}}</p>
-                </div> <!-- end .location-cell -->
-
-                <div class="cell expired-date-cell flex no-column no-wrap">
-                  <div class="cell-mobile-label">
-                    <h6>更新时间</h6>
-                  </div> <!-- end .cell-label -->
-                  <p>{{factor.gmtCreated}}</p>
-                </div> <!-- end .expire-date-cell -->
-
-                <!--<div class="cell salary-cell flex no-column no-wrap">-->
-                <!--<div class="cell-mobile-label">-->
-                <!--<h6>详情</h6>-->
-                <!--</div> &lt;!&ndash; end .cell-label &ndash;&gt;-->
-                <!--&lt;!&ndash;<p><sup>$</sup>60<span>/hour</span></p>&ndash;&gt;-->
-                <!--<a href="#">点击查看</a>-->
-                <!--</div> &lt;!&ndash; end .salray-cell &ndash;&gt;-->
-
-              </div> <!-- end .table-cells -->
+            <!--文字因子-->
+            <div class="table-row"
+                 v-for="factor in report.factors">
+              <text-factor :factor="factor" v-if="isNotGraph(factor.desc)"></text-factor>
             </div> <!-- end .table-row -->
+
+            <!--图片因子-->
+            <div class="table-row"
+                 v-for="pair in getGraphFactorPairs()">
+              <div class="table-cells flex no-wrap">
+                <graph-factor :pair="pair"></graph-factor>
+              </div>
+            </div>
 
           </div> <!-- end .jobs-table -->
 
         </div> <!-- end .container -->
       </div> <!-- end .inner -->
     </div> <!-- end .section -->
-    {{report.bizType}}
     <block-history
       id="block-history"
       v-if="isShowRawData"
@@ -99,18 +58,56 @@
 <script>
   import BlockHistory from "../BlockHistory";
 
+  import TextFactor from "./factor/TextFactor";
+  import GraphFactor from "./factor/GraphFactor";
+
   export default {
-    components: {BlockHistory},
+    components: {
+      GraphFactor,
+      TextFactor,
+      BlockHistory
+    },
     name: "reportContent",
     props: ['report'],
     data() {
       return {
         isShowRawData: false
       }
+    },
+    methods: {
+      isGraph: function (desc) {
+        try {
+          return desc.indexOf("图") >= 0;
+        } catch (e) {
+          return false;
+        }
+      },
+      isNotGraph: function (desc) {
+        return !this.isGraph(desc);
+      },
+      getGraphFactorPairs: function () {
+        let pairs = new Array();
+        let idx = 0;
+        let pPre = true;
+        for (let factor of this.report.factors) {
+          // let factor = this.report.factors;
+          console.log(factor);
+          if (this.isGraph(factor.desc)) {
+            if (pPre) {
+              pairs.push(new Array(factor));
+            } else {
+              pairs[idx].push(factor);
+              idx++;
+            }
+            pPre = !pPre
+          }
+        }
+        console.log(pairs);
+        return pairs;
+      }
     }
   }
 </script>
 
 <style scoped>
-
 </style>

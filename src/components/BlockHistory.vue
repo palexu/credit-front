@@ -24,7 +24,7 @@
               class="panel panel-default"
               v-if="isShowData">
               <div class="panel-body">
-                {{creditData}}
+                <simple-data-collapse :creditData="creditData"></simple-data-collapse>
               </div>
             </div>
 
@@ -70,8 +70,10 @@
 
 <script>
   import axios from "axios";
+  import SimpleDataCollapse from "./report/SimpleDataCollapse";
 
   export default {
+    components: {SimpleDataCollapse},
     name: "block-history",
     props: [
       "provider",
@@ -157,6 +159,11 @@
         console.log(path);
         axios.get(path).then(res => {
 
+          console.log(res.data);
+          if(!res.data.success){
+            alert(res.data.msg);
+            return
+          }
           this.rst = res.data;
 
           for (var key in this.rst) {

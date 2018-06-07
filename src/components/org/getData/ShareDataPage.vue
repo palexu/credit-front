@@ -185,7 +185,12 @@
       submitCreditData: function () {
         let payload = this.mkPayload();
         axios.post("/api/data/save", payload).then(res => {
-          alert(res.data);
+          if(res.data.success){
+            alert("保存成功");
+          }else{
+            alert(res.data.msg)
+          }
+
         })
       }
     }
