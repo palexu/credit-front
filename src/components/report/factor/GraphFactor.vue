@@ -3,10 +3,11 @@
     <div v-for="factor in pair">
       <!--{{factor}}-->
       <!--饼图-->
-      <simple-pie v-if="isPie(factor.desc)" :pid="factor.name" :title="factor.name" :pieName="factor.name"></simple-pie>
+      <simple-pie v-if="isPie(factor.desc)" :pid="factor.name" :title="factor.name" :pieName="factor.name"
+                  :pie-data="factor.value"></simple-pie>
       <!--泡泡图-->
       <simple-bubble-gradient v-if="isBubble(factor.desc)" :pid="factor.name"
-                              :title="factor.name"></simple-bubble-gradient>
+                              :title="factor.name" :pie-data="factor.value"></simple-bubble-gradient>
     </div>
   </div>
 

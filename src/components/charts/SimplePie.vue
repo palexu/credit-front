@@ -12,7 +12,7 @@
         themes: [
           "vintage",
           "light",
-          "dark",
+          // "dark",
           "macarons"
         ]
       }
@@ -43,6 +43,7 @@
             {value: 1548, name: '搜索引擎'}
           ];
         } else {
+          console.log(pieData);
           pieData = this.pieData;
         }
 
