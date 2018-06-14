@@ -12,7 +12,7 @@
             <div class="form-group">
               <div class="form-group-inner">
                 <input type="text" class="form-control" id="input-field-1"
-                       placeholder="输入你的身份证号或统一社会信用代码" v-model="searchContent">
+                       placeholder="输入你的身份证号" v-model="searchContent">
                 <i class="ion-ios-briefcase-outline"></i>
               </div>
             </div>
@@ -63,19 +63,40 @@
     name: "search-report",
     data() {
       return {
-        searchContent: null
+        searchContent: "331082199604160001"
       }
     },
     methods: {
       searchReport: function (e) {
         e.preventDefault();
-        console.log(this.searchContent);
-        axios.get('/api/report/search/TEST01').then(res => {
+        if (!this.check()) {
+          return;
+        }
+
+        axios.get('/api/report/search/' + this.searchContent).then(res => {
           console.log(res.data);
+
+          try {
+            if (res.data.indexOf("error:") > -1) {
+              alert(res.data.replace("error:", ""));
+              return;
+            }
+          } catch (e) {
+            console.log(e.message);
+          }
+
           this.$emit("search:report", res.data)
         }).catch(excption => {
           console.log(excption)
         });
+      },
+      check: function () {
+        let id_reg = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
+        if (id_reg.test(this.searchContent) === false) {
+          alert("身份证输入不合法");
+          return false;
+        }
+        return true;
       }
     }
   }

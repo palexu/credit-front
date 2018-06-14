@@ -15,14 +15,15 @@
                   </div>
                   <label class="col-sm-1 control-label">手机号*</label>
                   <div class="col-sm-5">
-                    <input type="text" class="form-control" placeholder="手机号" v-model="naturePerson.phone">
+                    <input type="tel" class="form-control" placeholder="手机号" v-model="naturePerson.phone">
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label class="col-sm-1 control-label">身份证*</label>
                   <div class="col-sm-11">
-                    <input type="text" class="form-control" placeholder="身份证" v-model="naturePerson.idCard">
+                    <input type="text" class="form-control" placeholder="身份证" v-model="naturePerson.idCard"
+                           v-on:blur="check">
                   </div>
                 </div>
 
@@ -182,12 +183,45 @@
       getBizType: function () {
         return this.bizTypes;
       },
+      check: function () {
+        if (this.naturePerson.name.length == 0) {
+          alert("姓名不能为空");
+          return false;
+        }
+        let tel_reg = /^[0-9]{11}$/;
+        if (tel_reg.test(this.naturePerson.phone) === false) {
+          alert("手机号输入不合法");
+          return false;
+        }
+        let id_reg = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
+        if (id_reg.test(this.naturePerson.idCard) === false) {
+          alert("身份证输入不合法");
+          return false;
+        }
+        return true;
+      },
       submitCreditData: function () {
         let payload = this.mkPayload();
+        //校验
+        let dataValidated = true;
+        for (let item of this.creditRows) {
+          if (item.value.length == 0) {
+            dataValidated = false;
+          }
+        }
+        if (!dataValidated) {
+          alert("征信记录内容必须有值")
+          return;
+        }
+
+        if (!this.check()) {
+          return;
+        }
+
         axios.post("/api/data/save", payload).then(res => {
-          if(res.data.success){
+          if (res.data.success) {
             alert("保存成功");
-          }else{
+          } else {
             alert(res.data.msg)
           }
 

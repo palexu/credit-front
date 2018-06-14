@@ -28,6 +28,12 @@
               </div>
             </div>
 
+            <div v-if="!isShowData" class="panel panel-default">
+              <div class="panel-body" style="height: 500px">
+                <iframe style="width: 100%;height: 100%" src="" name="iframe1"></iframe>
+              </div>
+            </div>
+
             <div id="show_history_panel" class="panel panel-default"
                  v-for="history in histories" v-if="!isShowData">
               <div class="panel-body">
@@ -40,7 +46,8 @@
                     <p class="lead">{{history.provider}} </p>
                     <p v-for="opPair in history.opPairList">{{opPair.opType}} <code>{{opPair.opContent}}</code></p>
                     <br/>
-                    指纹:{{history.print}} <a href="#">(点击查看区块链交易记录)</a>
+                    指纹:{{history.print}} <a target="iframe1"
+                                            :href="'http://localhost:8000/#/transaction/'+history.trxHash">(点击查看区块链交易记录)</a>
                   </div>
                 </div>
               </div>
@@ -84,6 +91,7 @@
       return {
         //控制界面
         isShowData: true,
+        showIframe: true,
         //数据
         rst: {
           "sharedBike": {
@@ -162,7 +170,7 @@
         axios.get(path).then(res => {
 
           console.log(res.data);
-          if(!res.data.success){
+          if (!res.data.success) {
             alert(res.data.msg);
             return
           }

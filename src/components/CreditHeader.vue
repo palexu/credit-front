@@ -13,7 +13,7 @@
                 <ul class="list-unstyled">
                   <li><a href="/">首页</a></li>
                   <li><a href="/org">机构</a></li>
-                  <li><a href="/mock">mock数据</a></li>
+                  <!--<li><a href="/mock">mock数据</a></li>-->
                 </ul>
               </nav> <!-- end .main-nav -->
               <a href="" class="responsive-menu-open"><i class="ion-navicon"></i></a>

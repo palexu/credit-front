@@ -1,5 +1,5 @@
 <template>
-  <div class="panel" :id="this.pid" :style="{width: '500px', height: '300px'}"></div>
+  <div class="panel" :id="this.pid" :style="{width: '500px', height: '300px'}">{{this.pieData}}</div>
 </template>
 
 <script>
@@ -110,11 +110,11 @@
             trigger: 'item',
             formatter: "{a} <br/>{b} : {c} ({d}%)"
           },
-          legend: {
-            orient: 'vertical',
-            left: 'left',
-            data: legendData
-          },
+          // legend: {
+          //   orient: 'vertical',
+          //   left: 'left',
+          //   data: legendData
+          // },
           series: [
             {
               name: this.pieName,

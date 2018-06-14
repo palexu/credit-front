@@ -16,7 +16,6 @@
              v-on:click="clearTip"
              placeholder="输入你的密码">
     </div>
-    {{form}}
     <p v-if="tip.length>0" class="alert alert-danger">{{tip}}</p>
 
     <button v-on:click="login" class="button">登陆</button>

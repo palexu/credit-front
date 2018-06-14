@@ -5,8 +5,8 @@
       <li class="active"><a data-toggle="tab" href="#getData"><i class="ion-ios-glasses-outline"></i>获取征信数据</a></li>
       <li><a data-toggle="tab" href="#shareData"><i class="ion-ios-cog-outline"></i>上传征信数据</a></li>
       <li><a data-toggle="tab" href="#script"><i class="ion-ios-person-outline"></i>创造数据价值</a></li>
-      <li><a href="#"><i class="ion-ios-help-empty"></i>文档</a></li>
-      <li><a href="#"><i class="ion-ios-email-outline"></i>Contact Us</a></li>
+      <!--<li><a href="#"><i class="ion-ios-help-empty"></i>文档</a></li>-->
+      <!--<li><a href="#"><i class="ion-ios-email-outline"></i>Contact Us</a></li>-->
     </ul> <!-- end .jobpress-dynamic-tabs -->
 
     <div class="tab-content jobpress-dynamic-tabs-content">
