@@ -4,7 +4,7 @@
       id="show_template"
       class="panel panel-default">
       <div class="panel-body">
-        <button data-toggle="modal" data-target="#addTemplateModal" v-on:click="clearTemplateForm">新增</button>
+        <!--<button data-toggle="modal" data-target="#addTemplateModal" v-on:click="clearTemplateForm">新增</button>-->
         <table class="table table-striped">
           <thead>
           <tr>
@@ -25,7 +25,7 @@
             <td>{{template.gmtUpdated}}</td>
             <td>
               <a data-toggle="modal" data-target="#showTemplateModal" v-on:click="fillTemplateForm(template)">编辑</a>
-              <a v-on:click="deleteTemplate(template.id)">删除</a>
+              <!--<a v-on:click="deleteTemplate(template.id)">删除</a>-->
             </td>
           </tr>
           </tbody>
@@ -343,7 +343,7 @@
         }
       },
       deleteFactor: function (fid) {
-        axios.post("/api/report/manage/factor/delete?templateId=" + this.factorFormCopy.id + "&factorId=" + fid).then(response => {
+        axios.post("/api/report/manage/factor/delete?templateId=" + this.templateFormCopy.id + "&factorId=" + fid).then(response => {
           if (response.data) {
             this.getTemplateList();
             alert("success")

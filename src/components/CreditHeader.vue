@@ -31,8 +31,8 @@
                 </button>
                 <ul class="dropdown-menu">
                   <li><a href="#"></a></li>
-                  <li><a href="#">查看资料</a></li>
-                  <li role="separator" class="divider"></li>
+                  <!--<li><a href="#">查看资料</a></li>-->
+                  <!--<li role="separator" class="divider"></li>-->
                   <li><a v-on:click="logout">退出登录</a></li>
                 </ul>
               </div>

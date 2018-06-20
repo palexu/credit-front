@@ -10,52 +10,52 @@
 
       <div class="jobs-table">
 
-        <div class="table-header">
-          <div class="table-cells flex">
-            <div class="job-title-cell"><h6>数据提供方</h6></div>
-            <div class="job-type-cell"><h6>可用数据条数</h6></div>
-            <div class="location-cell"><h6>每千条token</h6></div>
-            <div class="expired-date-cell"><h6>更新时间</h6></div>
-            <div class="salary-cell"><h6>开始获取</h6></div>
-          </div> <!-- end .table-cells -->
-        </div> <!-- end .table-header -->
+        <!--<div class="table-header">-->
+          <!--<div class="table-cells flex">-->
+            <!--<div class="palexu_flex_8"><h6>数据提供方</h6></div>-->
+            <!--&lt;!&ndash;<div class="job-type-cell"><h6>可用数据条数</h6></div>&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="location-cell"><h6>每千条token</h6></div>&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="expired-date-cell"><h6>更新时间</h6></div>&ndash;&gt;-->
+            <!--<div class="palexu_flex_2"><h6>开始获取</h6></div>-->
+          <!--</div> &lt;!&ndash; end .table-cells &ndash;&gt;-->
+        <!--</div> &lt;!&ndash; end .table-header &ndash;&gt;-->
 
         <div class="table-row" v-for="data in provider.providerList">
           <div class="table-cells flex no-wrap">
 
-            <div class="cell job-title-cell flex no-column no-wrap">
+            <div class="cell job-title-cell flex no-column no-wrap palexu_flex_8">
               <div class="cell-mobile-label">
                 <h6>提供者</h6>
               </div> <!-- end .cell-label -->
               <img src="static/images/company-logo01.jpg" alt="company-logo" class="img-responsive">
               <div class="content">
-                <h4><a href="#">{{data.name}}</a></h4>
+                <h4><a href="#" class="text-center">{{data.name}}</a></h4>
                 <p class="small">{{data.desc}}</p>
               </div> <!-- end .content -->
             </div> <!-- end .job-title-cell -->
 
-            <div class="cell job-type-cell flex no-column">
-              <div class="cell-mobile-label">
-                <h6>数据条数</h6>
-              </div> <!-- end .cell-label -->
-              <button type="button" class="button full-time">{{data.count}}</button>
-            </div> <!-- end .job-type-cell -->
+            <!--<div class="cell job-type-cell flex no-column">-->
+            <!--<div class="cell-mobile-label">-->
+            <!--<h6>数据条数</h6>-->
+            <!--</div> &lt;!&ndash; end .cell-label &ndash;&gt;-->
+            <!--<button type="button" class="button full-time">{{data.count}}</button>-->
+            <!--</div> &lt;!&ndash; end .job-type-cell &ndash;&gt;-->
 
-            <div class="cell location-cell flex no-column no-wrap">
-              <div class="cell-mobile-label">
-                <h6>每千条token</h6>
-              </div> <!-- end .cell-label -->
-              <p class="text-center">{{data.price}}</p>
-            </div> <!-- end .location-cell -->
+            <!--<div class="cell location-cell flex no-column no-wrap">-->
+            <!--<div class="cell-mobile-label">-->
+            <!--<h6>每千条token</h6>-->
+            <!--</div> &lt;!&ndash; end .cell-label &ndash;&gt;-->
+            <!--<p class="text-center">{{data.price}}</p>-->
+            <!--</div> &lt;!&ndash; end .location-cell &ndash;&gt;-->
 
-            <div class="cell expired-date-cell flex no-column no-wrap">
-              <div class="cell-mobile-label">
-                <h6>更新时间</h6>
-              </div> <!-- end .cell-label -->
-              <p>{{data.gmtCreated}}</p>
-            </div> <!-- end .expire-date-cell -->
+            <!--<div class="cell expired-date-cell flex no-column no-wrap">-->
+            <!--<div class="cell-mobile-label">-->
+            <!--<h6>更新时间</h6>-->
+            <!--</div> &lt;!&ndash; end .cell-label &ndash;&gt;-->
+            <!--<p>{{data.gmtCreated}}</p>-->
+            <!--</div> &lt;!&ndash; end .expire-date-cell &ndash;&gt;-->
 
-            <div class="cell salary-cell flex no-column no-wrap">
+            <div class="cell palexu_flex_2 flex no-column no-wrap">
               <div class="cell-mobile-label">
                 <h6>详情</h6>
               </div> <!-- end .cell-label -->
@@ -143,12 +143,12 @@
     methods: {
       getData: function (idcard, event) {
         event.preventDefault();
-        if (this.providerSelected != null && this.provider.bizTypes != null && this.trailLimit > 0) {
+        if (this.providerSelected != null && this.provider.bizType != null && this.trailLimit > 0) {
           this.trailLimit--;
-          axios.get('/api/creditData/trial/get/' + this.providerSelected + '/' + idcard + '/' + this.provider.bizTypes).then(res => {
+          axios.get('/api/creditData/trial/get/' + this.providerSelected + '/' + idcard + '/' + this.provider.bizType).then(res => {
             console.log(res.data);
-            if(!res.data.success){
-              alert(res.data.msg);
+            if (!res.data.success) {
+              alert("该用户数据未收录");
               return
             }
             this.creditData = JSON.stringify(res.data.data, null, 4);
@@ -173,6 +173,14 @@
   /*.modal-body {*/
   /*height: 500px;*/
   /*}*/
+
+  .palexu_flex_2 {
+    flex: 0 20%
+  }
+
+  .palexu_flex_8 {
+    flex: 0 80%
+  }
 
   /*.modal-dialog {*/
   /*height: 550px;*/

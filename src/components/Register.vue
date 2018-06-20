@@ -2,12 +2,17 @@
   <form class="signup-form" method="get" action="/api/user/register">
     <div class="form-group">
       <label>账号 *</label>
-      <input type="text" name="username" class="form-control" v-model="form.username" placeholder="输入身份证或统一社会信用代码">
+      <input type="text" name="username"
+             class="form-control"
+             v-model="form.username"
+             v-on:blur="checkUserName"
+             placeholder="输入身份证或用户名">
     </div>
 
     <div class="form-group">
       <label>密码 *</label>
-      <input type="password" name="password" class="form-control" v-model="form.password" placeholder="输入密码">
+      <input type="password" name="password" class="form-control"
+             v-model="form.password" placeholder="输入密码">
     </div>
 
     <div class="form-group">
@@ -40,10 +45,36 @@
       }
     },
     methods: {
+      checkRole: function () {
+        if (this.form.role.length == 0) {
+          alert("未选择角色");
+          return false;
+        }
+        return true;
+      },
+      checkUserName: function () {
+        if (this.form.username.length == 0) {
+          alert("未正确填写账号");
+          return false;
+        }
+        return true;
+      },
+      check: function () {
+        if (!this.checkUserName()) {
+          return false;
+        }
+        if (!this.checkRole()) {
+          return false;
+        }
+        if (this.form.password.length < 6) {
+          alert("密码长度小于6");
+          return false;
+        }
+        return true;
+      },
       register: function (e) {
         e.preventDefault();
-        if (this.form.username.length == 0 || this.form.password.length < 6 || this.form.role.length == 0) {
-          alert("注册表单未正确填写");
+        if (!this.check()) {
           return;
         }
         axios.post("/api/user/register", this.form).then(response => {

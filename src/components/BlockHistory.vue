@@ -28,7 +28,10 @@
               </div>
             </div>
 
-            <div v-if="!isShowData" class="panel panel-default">
+            <div v-show="!showIframe" class="panel panel-default">
+              <div class="panel-body">
+                <button class="btn btn-success" v-on:click="switchIframe">关闭</button>
+              </div>
               <div class="panel-body" style="height: 500px">
                 <iframe style="width: 100%;height: 100%" src="" name="iframe1"></iframe>
               </div>
@@ -47,6 +50,7 @@
                     <p v-for="opPair in history.opPairList">{{opPair.opType}} <code>{{opPair.opContent}}</code></p>
                     <br/>
                     指纹:{{history.print}} <a target="iframe1"
+                                            v-on:click="switchIframe"
                                             :href="'http://localhost:8000/#/transaction/'+history.trxHash">(点击查看区块链交易记录)</a>
                   </div>
                 </div>
@@ -199,6 +203,9 @@
         } else {
           return false;
         }
+      },
+      switchIframe(){
+        this.showIframe=!this.showIframe;
       }
     },
   }

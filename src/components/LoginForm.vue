@@ -6,7 +6,7 @@
       <input type="text" name="username" class="form-control"
              v-model="form.username"
              v-on:click="clearTip"
-             placeholder="身份证 或 统一社会信用代码">
+             placeholder="身份证">
     </div>
 
     <div class="form-group">

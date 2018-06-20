@@ -8,6 +8,7 @@
             <h1>1. 填写自然人三要素</h1>
             <div class="row">
               <form class="form-horizontal">
+                <!--<div v-show="hasError" class="alert alert-danger" role="alert">{{errorMsg}}</div>-->
                 <div class="form-group">
                   <label class="col-sm-1 control-label">姓名*</label>
                   <div class="col-sm-5">
@@ -23,7 +24,7 @@
                   <label class="col-sm-1 control-label">身份证*</label>
                   <div class="col-sm-11">
                     <input type="text" class="form-control" placeholder="身份证" v-model="naturePerson.idCard"
-                           v-on:blur="check">
+                    >
                   </div>
                 </div>
 
@@ -127,6 +128,7 @@
     name: "share-data-page",
     data() {
       return {
+        errorMsg: "",
         creditRows: [
           {
             value: "",
@@ -182,6 +184,23 @@
       },
       getBizType: function () {
         return this.bizTypes;
+      },
+      hasError() {
+        if (this.naturePerson.name.length == 0) {
+          this.errorMsg = "姓名不能为空";
+          return false;
+        }
+        let tel_reg = /^[0-9]{11}$/;
+        if (tel_reg.test(this.naturePerson.phone) === false) {
+          this.errorMsg = "手机号输入不合法";
+          return false;
+        }
+        let id_reg = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
+        if (id_reg.test(this.naturePerson.idCard) === false) {
+          this.errorMsg = "身份证输入不合法";
+          return false;
+        }
+        return true;
       },
       check: function () {
         if (this.naturePerson.name.length == 0) {

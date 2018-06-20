@@ -7,7 +7,7 @@ import DemoOne from '@/components/charts/DemoOne'
 
 Vue.use(Router);
 
-export default new Router({
+let router = new Router({
   mode: 'history',
   routes: [
     {
@@ -31,4 +31,22 @@ export default new Router({
       component: DemoOne
     }
   ]
-})
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.path.indexOf("/org") > -1) {
+    let user = window.sessionStorage.getItem("user");
+    if (user === null) {
+      alert("访问机构页面请先登陆");
+      next({
+        path: '/'
+      });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
+
+export default router;
